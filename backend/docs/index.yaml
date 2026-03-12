@@ -1,0 +1,17 @@
+openapi: 3.0.0
+info:
+  title: Collector Library API
+  version: 1.0.0
+  description: API para gestionar una biblioteca de colecciones, incluyendo autores, libros y colecciones.
+
+servers:
+  - url: http://localhost:3000
+    description: Servidor local para desarrollo
+
+paths:
+  /autores:
+    $ref: './paths/autores.yaml'
+  /books:
+    $ref: './paths/books.yaml'
+  /books/isbn/{isbn}:
+    $ref: './paths/books.yaml'

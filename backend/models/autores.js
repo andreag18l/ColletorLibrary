@@ -2,21 +2,21 @@
 
 module.exports = (sequelize, DataTypes) => {
   const Author = sequelize.define('Author', {
-    author_id: {
+    id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
     },
-    first_name: {
+    firstName: {
       type: DataTypes.STRING(100),
       allowNull: false,
     },
-    last_name: {
+    lastName: {
       type: DataTypes.STRING(100),
       allowNull: false,
     },
-    birth_year: {
+    birthYear: {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
@@ -25,10 +25,9 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
     },
   }, {
-    tableName: 'Authors',      
+    tableName: 'Authors',
     freezeTableName: true,
-    timestamps: false,         
-    underscored: true,
+    timestamps: true,
   });
 
   Author.associate = (models) => {

@@ -13,7 +13,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Authors', {
-      author_id: {
+      autor_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,

@@ -1,0 +1,102 @@
+post:
+  summary: Crear un nuevo libro
+  tags: [Books]
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            title:
+              type: string
+              example: "El Principito"
+            author_id:
+              type: integer
+              example: 1
+            genre:
+              type: string
+              example: "Novela"
+            publication_year:
+              type: integer
+              example: 1943
+            isbn:
+              type: string
+              example: "9780156012195"
+            page_count:
+              type: integer
+              example: 96
+  responses:
+    '201':
+      description: Libro creado con éxito
+      content:
+        application/json:
+          example:
+            status: 201
+            data:
+              id: 3
+              title: "El Principito"
+              author_id: 1
+              genre: "Novela"
+              publication_year: 1943
+              isbn: "9780156012195"
+              page_count: 96
+              createdAt: "2026-03-11T18:00:00.000Z"
+              updatedAt: "2026-03-11T18:00:00.000Z"
+    '406':
+      description: Datos inválidos para crear el libro
+      content:
+        application/json:
+          example:
+            status: 406
+            message: "Invalid book data"
+    '500':
+      description: Error del servidor
+      content:
+        application/json:
+          example:
+            status: 500
+            message: "Error creating book"
+            error: "Internal server error"
+get:
+  summary: Obtener libro por ISBN
+  tags: [Books]
+  parameters:
+    - in: path
+      name: isbn
+      required: true
+      schema:
+        type: string
+      example: "978-0451205766"
+  responses:
+    '200':
+      description: Libro encontrado
+      content:
+        application/json:
+          example:
+            status: 200
+            data:
+              id: 1
+              title: "The Templar Legacy"
+              author_id: 1
+              genre: "sci-fiction"
+              publication_year: 2003
+              isbn: "978-0451205766"
+              page_count: 240
+              createdAt: "2026-03-04T14:56:15.219Z"
+              updatedAt: "2026-03-04T14:56:15.219Z"
+    '404':
+      description: Libro no encontrado
+      content:
+        application/json:
+          example:
+            status: 404
+            message: "Book not found"
+    '500':
+      description: Error del servidor
+      content:
+        application/json:
+          example:
+            status: 500
+            message: "Error fetching book"
+            error: "Internal server error"
