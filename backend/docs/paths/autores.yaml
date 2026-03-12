@@ -1,0 +1,80 @@
+get:
+  summary: Obtener todos los autores
+  tags: [Authors]
+  responses:
+    '200':
+      description: Lista de autores obtenida con exito
+      content:
+        application/json:
+          example:
+            status: 200
+            data:
+              - id: 1
+                firstName: "Gabriel"
+                lastName: "Garcia Marquez"
+                birthYear: 1927
+                nationality: "Colombiano"
+
+    '204':
+      description: No authors found
+
+    '500':
+      description: Error del servidor
+      content:
+        application/json:
+          example:
+            status: 500
+            message: "Error fetching authors"
+            error: "Internal server error"
+
+post:
+  summary: Crear un nuevo autor
+  tags: [Authors]
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            firstName:
+              type: string
+              example: "Juan"
+            lastName:
+              type: string
+              example: "Reyes"
+            nationality:
+              type: string
+              example: "Cubana"
+            birthYear:
+              type: integer
+              example: 1971
+  responses:
+    '201':
+      description: Autor creado con exito
+      content:
+        application/json:
+          example:
+            status: 201
+            data:
+              id: 1
+              firstName: "Juan"
+              lastName: "Reyes"
+              birthYear: 1971
+              nationality: "Cubana"
+
+    '406':
+      description: No se recibieron datos
+      content:
+        application/json:
+          example:
+            status: 406
+            message: "No se recibieron datos"
+
+    '500':
+      description: Error del servidor
+      content:
+        application/json:
+          example:
+            status: 500
+            message: "connect ECONNREFUSED ip:port"
